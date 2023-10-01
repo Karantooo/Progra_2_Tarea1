@@ -40,4 +40,13 @@ public class Efectivo extends Pago{
     public float calcDevolucion(){
         return super.getMonto() - precio_articulo;
     }
+
+    /**
+     *
+     * @return Entrega string con el monto pagado y su vuelto.
+     */
+    @Override
+    public String toString(){
+        return "Pago con efectivo de " + super.getMonto() + " con un vuelto de " + calcDevolucion();
+    }
 }
