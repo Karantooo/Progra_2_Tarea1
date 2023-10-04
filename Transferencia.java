@@ -44,7 +44,7 @@ public class Transferencia extends Pago{
         informacion_cuenta += super.toString();
         informacion_cuenta += "\nMetodo: Transferencia";
         informacion_cuenta += "\nBanco: " + banco ;
-        informacion_cuenta += "\nNumero de cuenta:" + numCuenta + "\n\n";
+        informacion_cuenta += "\nNumero de cuenta: " + numCuenta + "\n\n";
 
         return informacion_cuenta;
     }

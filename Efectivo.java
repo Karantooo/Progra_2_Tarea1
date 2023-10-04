@@ -47,6 +47,6 @@ public class Efectivo extends Pago{
      */
     @Override
     public String toString(){
-        return super.toString() + "\nMetodo: Efectivo"  + "Vuelto:" + calcDevolucion() + "\n\n";
+        return super.toString() + "\nMetodo: Efectivo"  + "Vuelto: " + calcDevolucion() + "\n\n";
     }
 }

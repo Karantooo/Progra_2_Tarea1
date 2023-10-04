@@ -61,6 +61,6 @@ public abstract class Pago {
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
         String fechaFormateada = formatoFecha.format(fecha);
 
-        return "Informacion del pago\nMonto:" + monto + "\nDia de pago:" + fechaFormateada + "";
+        return "Informacion del pago\nMonto: " + monto + "\nDia de pago: " + fechaFormateada;
     }
 }
