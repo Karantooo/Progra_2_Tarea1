@@ -2,11 +2,11 @@ package org.cliente;
 import java.util.Date;
 
 /**
- * Esta clase se usa para crear el documento tributario
+ * Clase abstracta que se usa para dar forma a los documentos tributarios
  *
  * @author Benjamin Alonso Espinoza Henriquez
  */
-public class DocTributario {
+ abstract public class DocTributario {
     private String num;
     private String rut;
     private Date fecha;
