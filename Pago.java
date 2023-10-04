@@ -7,10 +7,10 @@ import java.util.Date;
  * El objetivo de esta clase es que se encargue de la gestion de los pagos de los diferentes articulos asi como en que
  * fechas estos pagos deberian ser efectuados.
  * Esta clase solo gestiona pagos individuales pero no pagos por cuotas.
- *
+ * No
  * @author Carlos Tomás Álvarez Norambuena
  */
-public class Pago {
+public abstract class Pago {
     private float monto;
     private Date fecha;
 
@@ -55,13 +55,12 @@ public class Pago {
 
     /**
      * Metodo toString que devuelve monto y la fecha de pago.
-     * @return
      */
     @Override
     public String toString(){
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
         String fechaFormateada = formatoFecha.format(fecha);
 
-        return "Monto:" + monto + " a pagar el dia " + fechaFormateada + ".";
+        return "Informacion del pago\nMonto:" + monto + "\nDia de pago:" + fechaFormateada + "";
     }
 }

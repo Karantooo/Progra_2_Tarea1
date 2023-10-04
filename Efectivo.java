@@ -43,10 +43,10 @@ public class Efectivo extends Pago{
 
     /**
      *
-     * @return Entrega string con el monto pagado y su vuelto.
+     * @return Entrega string con el toString de pago y su vuelto.
      */
     @Override
     public String toString(){
-        return "Pago con efectivo de " + super.getMonto() + " con un vuelto de " + calcDevolucion();
+        return super.toString() + '\n' + "Vuelto:" + calcDevolucion() + "\nMetodo: Efectivo\n\n";
     }
 }
