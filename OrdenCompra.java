@@ -7,8 +7,10 @@ public class OrdenCompra {
     private Date fecha;
     private String estado;
     private ArrayList <DetalleOrden> detalleOrdenes;
+    private ArrayList <Pago> pagoCompra;
     private int size;
     private Cliente cliente;
+    private float precioPorPagar;
 
 
     public OrdenCompra(Date fecha, String estado, Cliente cliente) {
@@ -18,6 +20,10 @@ public class OrdenCompra {
         size = 0;
         this.cliente = cliente;
         cliente.asociarOrdenCompra(this);
+        pagoCompra = new ArrayList<Pago>();
+        precioPorPagar = calcPrecio();
+        estado = new String("Sin resolver.");
+
     }
     public OrdenCompra(Date fecha, String estado) {
         this.fecha = fecha;
@@ -25,7 +31,8 @@ public class OrdenCompra {
         this.detalleOrdenes = new ArrayList<DetalleOrden>();
         size = 0;
         this.cliente = null;
-
+        pagoCompra = new ArrayList<Pago>();
+        precioPorPagar = calcPrecio();
     }
 
 
@@ -132,5 +139,51 @@ public class OrdenCompra {
             peso += detalleOrdenes.get(i).calcPeso();
         }
         return peso;
+    }
+
+    /**
+     *Se detalla lo que se quiere pagar asi como el pago en efectivo que realiza para devolver el vuelto.
+     * En caso de que se quiera pagar más de lo que falta por pgar o el monto pagado es inferior a obtetivo a pagar
+     * se devuelve 0 y no se efectua dicho pago.
+     * @param montoPagado Monto que paga en dinero el usuario.
+     * @param objetivoAPagar Monto que se quiere pagar para calcular el vuelto.
+     * @param fechaPago Fecha en que se va a efectuar el pago.
+     * @return Vuelto a devolver.
+     */
+    public float pagarEnEfectivo(float montoPagado,float objetivoAPagar ,Date fechaPago){
+        if (montoPagado < objetivoAPagar || objetivoAPagar > precioPorPagar)
+            return 0.0f;
+        estado = "En proceso.";
+        Efectivo efectivo = new Efectivo(objetivoAPagar, montoPagado, fechaPago);
+        pagoCompra.add(efectivo);
+        precioPorPagar -= objetivoAPagar;
+        if (precioPorPagar == 0)
+            estado = "Pago realizado.";
+
+        return efectivo.calcDevolucion();
+    }
+
+    public void pagarEnTransferencia(float montoPagado, Date fechaPago, String banco, String numCuenta){
+        if (montoPagado > precioPorPagar)
+            return ;
+        estado = "En proceso.";
+        Transferencia transferencia = new Transferencia(montoPagado, fechaPago, banco, numCuenta);
+
+        pagoCompra.add(transferencia);
+        precioPorPagar -= montoPagado;
+        if (precioPorPagar == 0)
+            estado = "Pago realizado.";
+    }
+
+    public void pagarEnTarjeta(float montoPagado, Date fechaPago, String tipo, String numTransaccion){
+        if (montoPagado > precioPorPagar)
+            return ;
+        estado = "En proceso.";
+        Tarjeta tarjeta = new Tarjeta(montoPagado, fechaPago, tipo, numTransaccion);
+
+        pagoCompra.add(tarjeta);
+        precioPorPagar -= montoPagado;
+        if (precioPorPagar == 0)
+            estado = "Pago realizado.";
     }
 }
