@@ -1,11 +1,24 @@
 package org.example;
 
+/**
+ * Clase con informacion sobre el articulo
+ *
+ * @author Carlos Tomás Álvarez Norambuena
+ */
 public class Articulo {
     private float peso;
     private String nombre;
     private String descripcion;
     private float precio;
 
+    /**
+     * Constructor de la clase
+     *
+     * @param peso peso del articulo
+     * @param nombre nombre del articulo
+     * @param descripcion descripcion del articulo
+     * @param precio precio del articulo
+     */
     public Articulo(float peso, String nombre, String descripcion, float precio) {
         this.peso = peso;
         this.nombre = nombre;
@@ -45,6 +58,10 @@ public class Articulo {
         this.precio = precio;
     }
 
+    /**
+     *
+     * @return informacion del articulo
+     */
     @Override
     public String toString(){
         String descripcion_articulo = new String();
