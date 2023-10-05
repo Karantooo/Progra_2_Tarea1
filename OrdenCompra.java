@@ -1,5 +1,4 @@
 package org.example;
-import org.DetalleOrden;
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -20,6 +19,7 @@ public class OrdenCompra {
     public OrdenCompra(Date fecha, String estado) {
         this.fecha = fecha;
         this.estado = estado;
+        this.detalleOrdenes = new ArrayList<DetalleOrden>();
         size = 0;
     }
 
@@ -39,6 +39,7 @@ public class OrdenCompra {
         try{
             if (size == 0)
                 throw new IllegalArgumentException("Se intenta extraer una orden pero no hay.");
+            size--;
             detalleOrden = detalleOrdenes.remove(0);
 
         }
@@ -51,8 +52,8 @@ public class OrdenCompra {
         try{
             if (size < index)
                 throw new IllegalArgumentException("Se intenta extraer una orden fuera de indice.");
+            size--;
             detalleOrden = detalleOrdenes.remove(index);
-
         }
         finally{
             return detalleOrden;
@@ -75,8 +76,8 @@ public class OrdenCompra {
         this.estado = estado;
     }
 
-    public ArrayList<DetalleOrden> getOrdenesDeCompra() {
-        return detalleOrdenes;
+    public int getSize() {
+        return size;
     }
 
     public ArrayList<DetalleOrden> getDetalleOrdenes() {
@@ -85,5 +86,38 @@ public class OrdenCompra {
 
     public void setDetalleOrdenes(ArrayList<DetalleOrden> detalleOrdenes) {
         this.detalleOrdenes = detalleOrdenes;
+    }
+
+    public float calcPrecioSinIVA(){
+        float precioSinIVA = 0;
+
+        for (int i = 0; i < size; i++){
+            precioSinIVA += detalleOrdenes.get(i).calcPrecioSinIVA();
+        }
+        return precioSinIVA;
+    }
+
+    public float calcIVA(){
+        float IVA = 0;
+        for (int i = 0; i < size; i++){
+            IVA += detalleOrdenes.get(i).calcIVA();
+        }
+        return IVA;
+    }
+
+    public float calcPrecio(){
+        float precioConIVA = 0;
+        for (int i = 0; i < size; i++){
+            precioConIVA += detalleOrdenes.get(i).calcPrecio();
+        }
+        return precioConIVA;
+    }
+
+    public float calcPeso(){
+        float peso = 0;
+        for (int i = 0; i < size; i++){
+            peso += detalleOrdenes.get(i).calcPeso();
+        }
+        return peso;
     }
 }
