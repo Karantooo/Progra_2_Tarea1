@@ -1,4 +1,4 @@
-package org.cliente;
+package org.example;
 /**
  * Clase para generar al cliente junto con sus datos
  *
@@ -51,6 +51,11 @@ public class Cliente {
      */
     @Override
     public String toString() {
-        return "Cliente: " + getNombre() + "\nrut:" + getRut() + "\ndireccion: " + getDireccion();
+        String descripcion_cliente = new String();
+        descripcion_cliente += "Nombre: " + getNombre();
+        descripcion_cliente += "\nRut: " + getRut();
+        descripcion_cliente += "\nDireccion: " + getDireccion();
+
+        return descripcion_cliente;
     }
 }

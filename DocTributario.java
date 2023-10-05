@@ -1,4 +1,4 @@
-package org.cliente;
+package org.example;
 import java.util.Date;
 
 /**
@@ -61,7 +61,12 @@ import java.util.Date;
      */
     @Override
     public String toString() {
-        return "Documento numero: " + getNum() + "\nrut: " + getRut() + "\nfecha: " + getFecha()
-                + "\ndireccion: " + getDireccion();
+        String descrpicion_doc = new String();
+        descrpicion_doc += "Numero: " + getNum();
+        descrpicion_doc += "\nRut: " + getRut();
+        descrpicion_doc += "\nFecha: " + getFecha();
+        descrpicion_doc += "\nDireccion: " + getDireccion();
+
+        return descrpicion_doc;
     }
 }

@@ -1,4 +1,4 @@
-package org;
+package org.example;
 
 /**
  *
@@ -34,16 +34,16 @@ public class DetalleOrden {
         this.articulo = articulo;
     }
     public float calcPrecio(){
-        return getCantidad() * articulo.getPrecio * 1.19;
+        return (float) (getCantidad() * articulo.getPrecio() * 1.19);
     }
     public float calcPrecioSinIVA(){
-        return  getCantidad() * articulo.getPrecio;
+        return  getCantidad() * articulo.getPrecio();
     }
     public float calcIVA(){
-        return getCantidad() * articulo.getPrecio * 0.19;
+        return (float) (getCantidad() * articulo.getPrecio() * 0.19);
     }
     public float calcPeso(){
-        return getCantidad() * articulo.getPeso;
+        return getCantidad() * articulo.getPeso();
     }
 
     /**
@@ -52,8 +52,14 @@ public class DetalleOrden {
      */
     @Override
     public String toString() {
-        return "La cantidad de articulos son: " + getCantidad() + "\nPrecio sin IVA: " + calcPrecioSinIVA() +
-                "\nIVA: " + calcIVA() + "\nPrecio final: " + calcPrecio() + "\nPeso total: " + calcPeso();
+        String descripcion_detalleorden = new String();
+        descripcion_detalleorden += "Cantidad: " + getCantidad();
+        descripcion_detalleorden += "\nPrecio sin IVA: " + calcPrecioSinIVA();
+        descripcion_detalleorden += "\nIVA: " + calcIVA();
+        descripcion_detalleorden += "\nPrecio total: " + calcPrecio();
+        descripcion_detalleorden += "\nPeso: " + calcPeso();
+
+        return descripcion_detalleorden;
     }
 }
 

@@ -1,4 +1,4 @@
-package org.cliente;
+package org.example;
 import java.util.Date;
 
 /**
@@ -23,7 +23,9 @@ public class Factura extends DocTributario{
      */
     @Override
     public String toString() {
-        return "Factura numero: " + super.getNum() + "\nrut: " + super.getRut() + "\nfecha: " + super.getFecha()
-                + "\ndireccion: " + super.getDireccion();
+        String descripcion_factura = new String();
+        descripcion_factura += super.toString() + "\nTipo: Factura";
+
+        return descripcion_factura;
     }
 }

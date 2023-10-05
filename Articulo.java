@@ -48,10 +48,10 @@ public class Articulo {
     @Override
     public String toString(){
         String descripcion_articulo = new String();
-        descripcion_articulo += "Nombre:" + nombre;
-        descripcion_articulo += "Peso:" + peso;
-        descripcion_articulo += "Descripcion:" + descripcion;
-        descripcion_articulo += "Precio:" + precio;
+        descripcion_articulo += "Nombre: " + nombre;
+        descripcion_articulo += "\nPeso: " + peso;
+        descripcion_articulo += "\nDescripcion: " + descripcion;
+        descripcion_articulo += "\nPrecio: " + precio;
         
         return descripcion_articulo;
     }

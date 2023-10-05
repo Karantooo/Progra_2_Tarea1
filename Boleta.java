@@ -1,4 +1,4 @@
-package org.cliente;
+package org.example;
 import java.util.Date;
 
 /**
@@ -23,7 +23,9 @@ public class Boleta extends DocTributario {
      */
     @Override
     public String toString() {
-        return "Boleta numero: " + super.getNum() + "\nrut: " + super.getRut() + "\nfecha: " + super.getFecha()
-                + "\ndireccion: " + super.getDireccion();
+        String descripcion_boleta = new String();
+        descripcion_boleta += super.toString() + "\nTipo: Boleta";
+
+        return descripcion_boleta;
     }
 }

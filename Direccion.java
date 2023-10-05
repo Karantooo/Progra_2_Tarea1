@@ -1,4 +1,4 @@
-package org.cliente;
+package org.example;
 /**
  * Clase para generar la direccion de la tienda o del cliente
  *
@@ -29,6 +29,6 @@ public class Direccion {
      */
     @Override
     public String toString() {
-        return "La Direccion es" + getDireccion();
+        return "Direccion: " + getDireccion();
     }
 }

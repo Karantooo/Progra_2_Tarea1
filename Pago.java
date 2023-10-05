@@ -60,7 +60,11 @@ public abstract class Pago {
     public String toString(){
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
         String fechaFormateada = formatoFecha.format(fecha);
+        String descripcion_pago = new String();
+        descripcion_pago += "Informacion del pago";
+        descripcion_pago += "\nMonto: " + getMonto();
+        descripcion_pago += "\nDia de pago: " + fechaFormateada;
 
-        return "Informacion del pago\nMonto: " + monto + "\nDia de pago: " + fechaFormateada;
+        return descripcion_pago;
     }
 }
