@@ -41,6 +41,7 @@ public class DetalleOrden {
      */
     public float calcPrecio(){
         return (float) (getCantidad() * articulo.getPrecio() * 1.19);
+
     }
 
     /**
