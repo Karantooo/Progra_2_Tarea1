@@ -11,6 +11,7 @@ import java.util.Date;
     private String rut;
     private Date fecha;
     private Direccion direccion;
+    private OrdenCompra ordenCompra;
 
     /**
      * Constructor donde se definen los datos del cliente
@@ -19,11 +20,12 @@ import java.util.Date;
      * @param fecha fecha en la que se realizo el pago
      * @param direccion direccion de la tienda
      */
-    public DocTributario(String num, String rut, Date fecha, Direccion direccion) {
+    public DocTributario(String num, String rut, Date fecha, Direccion direccion,OrdenCompra ordenCompra) {
         this.num = num;
         this.rut = rut;
         this.fecha = fecha;
         this.direccion = direccion;
+        this.ordenCompra = ordenCompra;
     }
     public String getNum() {
         return num;
@@ -61,12 +63,16 @@ import java.util.Date;
      */
     @Override
     public String toString() {
-        String descrpicion_doc = new String();
-        descrpicion_doc += "Numero: " + getNum();
-        descrpicion_doc += "\nRut: " + getRut();
-        descrpicion_doc += "\nFecha: " + getFecha();
-        descrpicion_doc += "\nDireccion: " + getDireccion();
+        String descripcion_doc = new String();
+        descripcion_doc += "Numero: " + getNum();
+        descripcion_doc += "\nRut: " + getRut();
+        descripcion_doc += "\nFecha: " + getFecha();
+        descripcion_doc += "\nDireccion: " + getDireccion();
+        descripcion_doc += "\nPrecio neto: " + ordenCompra.calcPrecioSinIVA();
+        descripcion_doc += "\nIVA: " + ordenCompra.calcIVA();
+        descripcion_doc += "\nPrecio total:" + ordenCompra.calcPrecio();
+        descripcion_doc += "\nPeso: " + ordenCompra.calcPeso();
 
-        return descrpicion_doc;
+        return descripcion_doc;
     }
 }

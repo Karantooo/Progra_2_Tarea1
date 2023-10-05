@@ -15,8 +15,8 @@ public class Factura extends DocTributario{
      * @param fecha fecha en la que se realizo el pago
      * @param direccion direccion de la tienda
      */
-    public Factura(String num, String rut, Date fecha, Direccion direccion) {
-        super(num, rut, fecha, direccion);
+    public Factura(String num, String rut, Date fecha, Direccion direccion, OrdenCompra ordenCompra) {
+        super(num, rut, fecha, direccion, ordenCompra);
     }
     /**
      * @return String de la factura con los datos de la compra
