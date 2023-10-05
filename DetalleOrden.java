@@ -1,6 +1,7 @@
 package org.example;
 
 /**
+ *Clase con el objetivo de generar el detalle de la orden de solo un articulo en especifico
  *
  * @author Benjamin Alonso Espinoza Henriquez
  */
@@ -10,8 +11,8 @@ public class DetalleOrden {
 
     /**
      * Constructor de la clase
-     * @param cantidad
-     * @param articulo
+     * @param cantidad cantidad del articulo
+     * @param articulo cual es el articulo
      */
     public DetalleOrden(int cantidad, Articulo articulo) {
         this.cantidad = cantidad;
@@ -33,22 +34,42 @@ public class DetalleOrden {
     public void setArticulo(Articulo articulo) {
         this.articulo = articulo;
     }
+
+    /**
+     *
+     * @return Precio total (Incluye IVA)
+     */
     public float calcPrecio(){
         return (float) (getCantidad() * articulo.getPrecio() * 1.19);
     }
+
+    /**
+     *
+     * @return Precio sin el IVA
+     */
     public float calcPrecioSinIVA(){
         return  getCantidad() * articulo.getPrecio();
     }
+
+    /**
+     *
+     * @return solo el IVA
+     */
     public float calcIVA(){
         return (float) (getCantidad() * articulo.getPrecio() * 0.19);
     }
+
+    /**
+     *
+     * @return Peso de la orden
+     */
     public float calcPeso(){
         return getCantidad() * articulo.getPeso();
     }
 
     /**
      *
-     * @return informacion del precio del articulo
+     * @return informacion de la cantidad y precio del articulo
      */
     @Override
     public String toString() {
