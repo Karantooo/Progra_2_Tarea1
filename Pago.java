@@ -14,7 +14,6 @@ public abstract class Pago {
     private float monto;
     private Date fecha;
 
-    protected MetodoDePago tipoTransaccion;
 
     /**
      * Constructor de la clase donde se define el monto pagado por el cliente.

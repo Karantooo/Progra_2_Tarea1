@@ -19,7 +19,6 @@ public class Efectivo extends Pago{
         if (precio_articulo > monto)
             throw new IllegalArgumentException("Se esta intentando comprar un articulo por debajo de su precio.");
         this.precio_articulo = precio_articulo;
-        tipoTransaccion = MetodoDePago.EFECTIVO;
     }
 
     /**
@@ -33,7 +32,6 @@ public class Efectivo extends Pago{
         if (precio_articulo > monto)
             throw new IllegalArgumentException("Se esta intentando comprar un articulo por debajo de su precio.");
         this.precio_articulo = precio_articulo;
-        tipoTransaccion = MetodoDePago.EFECTIVO;
     }
 
     /**

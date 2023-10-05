@@ -10,14 +10,12 @@ public class Tarjeta extends Pago{
         super(monto);
         this.tipo = tipo;
         this.numTransaccion = numTransaccion;
-        tipoTransaccion = MetodoDePago.TARJETA;
     }
 
     public Tarjeta(float monto, Date fecha, String tipo, String numTransaccion) {
         super(monto, fecha);
         this.tipo = tipo;
         this.numTransaccion = numTransaccion;
-        tipoTransaccion = MetodoDePago.TARJETA;
     }
 
     public String getTipo() {

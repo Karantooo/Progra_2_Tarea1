@@ -23,7 +23,6 @@ public class Transferencia extends Pago{
         super(monto);
         this.banco = banco;
         this.numCuenta = numCuenta;
-        tipoTransaccion = MetodoDePago.TRANSFERENCIA;
     }
 
     /**
@@ -37,7 +36,6 @@ public class Transferencia extends Pago{
         super(monto, fecha);
         this.banco = banco;
         this.numCuenta = numCuenta;
-        tipoTransaccion = MetodoDePago.TRANSFERENCIA;
     }
 
     public String getBanco() {
