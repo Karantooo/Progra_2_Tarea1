@@ -1,15 +1,19 @@
 package org.example;
 
+import java.util.ArrayList;
+
 /**
  * Clase con informacion sobre el articulo
  *
  * @author Carlos Tomás Álvarez Norambuena
+ * @author Benjamin Alonso Espinoza Henriquez
  */
 public class Articulo {
     private float peso;
     private String nombre;
     private String descripcion;
     private float precio;
+    private ArrayList<DetalleOrden> ordenes;
 
     /**
      * Constructor de la clase
@@ -56,6 +60,18 @@ public class Articulo {
 
     public void setPrecio(float precio) {
         this.precio = precio;
+    }
+
+    public ArrayList<DetalleOrden> getOrdenes() {
+        return ordenes;
+    }
+
+    public void setOrdenes(ArrayList<DetalleOrden> ordenes) {
+        this.ordenes = ordenes;
+    }
+
+    public void addOrdenes(DetalleOrden orden){
+        ordenes.add(orden);
     }
 
     /**

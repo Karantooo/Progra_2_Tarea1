@@ -17,6 +17,7 @@ public class DetalleOrden {
     public DetalleOrden(int cantidad, Articulo articulo) {
         this.cantidad = cantidad;
         this.articulo = articulo;
+        articulo.addOrdenes(this);
     }
 
     public int getCantidad() {
