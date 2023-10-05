@@ -34,6 +34,15 @@ public class Efectivo extends Pago{
         this.precio_articulo = precio_articulo;
     }
 
+    public float getPrecio_articulo() {
+        return precio_articulo;
+    }
+
+    public void setPrecio_articulo(float precio_articulo) {
+        this.precio_articulo = precio_articulo;
+    }
+
+
     /**
      * @return Devuelve el vuelto que se debe devolver al cliente.
      */

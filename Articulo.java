@@ -28,6 +28,7 @@ public class Articulo {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
+        this.ordenes = new ArrayList<DetalleOrden>();
     }
 
     public float getPeso() {

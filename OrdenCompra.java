@@ -11,24 +11,29 @@ public class OrdenCompra {
     private int size;
     private Cliente cliente;
     private float precioPorPagar;
+    private DocTributario docTributario;
+    private static int numdoc;
 
 
     public OrdenCompra(Date fecha, String estado, Cliente cliente) {
         this.fecha = fecha;
         this.estado = estado;
         this.detalleOrdenes = new ArrayList<DetalleOrden>();
+        this.docTributario = null;
+        numdoc = 0;
         size = 0;
         this.cliente = cliente;
         cliente.asociarOrdenCompra(this);
         pagoCompra = new ArrayList<Pago>();
         precioPorPagar = calcPrecio();
         estado = new String("Sin resolver.");
-
     }
     public OrdenCompra(Date fecha, String estado) {
         this.fecha = fecha;
         this.estado = estado;
         this.detalleOrdenes = new ArrayList<DetalleOrden>();
+        this.docTributario = null;
+        numdoc = 0;
         size = 0;
         this.cliente = null;
         pagoCompra = new ArrayList<Pago>();
@@ -108,6 +113,34 @@ public class OrdenCompra {
         this.cliente = cliente;
     }
 
+    public ArrayList<Pago> getPagoCompra() {
+        return pagoCompra;
+    }
+
+    public void setPagoCompra(ArrayList<Pago> pagoCompra) {
+        this.pagoCompra = pagoCompra;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public float getPrecioPorPagar() {
+        return precioPorPagar;
+    }
+
+    public void setPrecioPorPagar(float precioPorPagar) {
+        this.precioPorPagar = precioPorPagar;
+    }
+
+    public DocTributario getDocTributario() {
+        return docTributario;
+    }
+
+    public void setDocTributario(DocTributario docTributario) {
+        this.docTributario = docTributario;
+    }
+
     public float calcPrecioSinIVA(){
         float precioSinIVA = 0;
 
@@ -185,5 +218,36 @@ public class OrdenCompra {
         precioPorPagar -= montoPagado;
         if (precioPorPagar == 0)
             estado = "Pago realizado.";
+    }
+    public DocTributario generarBoleta(){
+        if (docTributario == null) {
+            this.docTributario = new Boleta(Integer.toString(numdoc), cliente.getRut(), fecha, cliente.getDireccion(), this);
+            numdoc++;
+        }
+        else
+            throw new IllegalArgumentException("Ya existe un documento tributario.");
+        return this.docTributario;
+
+    }
+    public DocTributario generarFactura(){
+        if(docTributario == null) {
+            this.docTributario = new Factura(Integer.toString(numdoc), cliente.getRut(), fecha, cliente.getDireccion(), this);
+            numdoc++;
+        }
+        else
+            throw new IllegalArgumentException("Ya existe un documento tributario.");
+        return this.docTributario;
+    }
+
+    @Override
+    public String toString() {
+        String descripcion_OrdenCompra = new String();
+        descripcion_OrdenCompra += "Fecha: " + fecha;
+        descripcion_OrdenCompra += "\nEstado:" + estado;
+        descripcion_OrdenCompra += "\nCliente: " + cliente;
+        descripcion_OrdenCompra += "\nPrecio por pagar: " + precioPorPagar;
+        descripcion_OrdenCompra += "\nPrecio total: " + calcPrecio();
+
+        return descripcion_OrdenCompra;
     }
 }

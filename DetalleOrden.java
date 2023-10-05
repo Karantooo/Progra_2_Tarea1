@@ -8,16 +8,19 @@ package org.example;
 public class DetalleOrden {
     private int cantidad;
     private Articulo articulo;
+    private OrdenCompra ordenCompra;
 
     /**
      * Constructor de la clase
      * @param cantidad cantidad del articulo
      * @param articulo cual es el articulo
      */
-    public DetalleOrden(int cantidad, Articulo articulo) {
+    public DetalleOrden(int cantidad, Articulo articulo, OrdenCompra ordenCompra) {
         this.cantidad = cantidad;
         this.articulo = articulo;
+        this.ordenCompra = ordenCompra;
         articulo.addOrdenes(this);
+        ordenCompra.addDetalleOrden(this);
     }
 
     public int getCantidad() {
@@ -34,6 +37,14 @@ public class DetalleOrden {
 
     public void setArticulo(Articulo articulo) {
         this.articulo = articulo;
+    }
+
+    public OrdenCompra getOrdenCompra() {
+        return ordenCompra;
+    }
+
+    public void setOrdenCompra(OrdenCompra ordenCompra) {
+        this.ordenCompra = ordenCompra;
     }
 
     /**

@@ -58,6 +58,15 @@ import java.util.Date;
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
     }
+
+    public OrdenCompra getOrdenCompra() {
+        return ordenCompra;
+    }
+
+    public void setOrdenCompra(OrdenCompra ordenCompra) {
+        this.ordenCompra = ordenCompra;
+    }
+
     /**
      * @return String del documento con los datos de la compra
      */

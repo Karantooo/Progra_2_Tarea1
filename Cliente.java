@@ -49,6 +49,14 @@ public class Cliente {
         this.direccion = direccion;
     }
 
+    public ArrayList<OrdenCompra> getOrdenesCompraAsociadas() {
+        return ordenesCompraAsociadas;
+    }
+
+    public void setOrdenesCompraAsociadas(ArrayList<OrdenCompra> ordenesCompraAsociadas) {
+        this.ordenesCompraAsociadas = ordenesCompraAsociadas;
+    }
+
     public void asociarOrdenCompra(OrdenCompra ordenCompra){
         ordenesCompraAsociadas.add(ordenCompra);
     }

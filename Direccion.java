@@ -17,6 +17,8 @@ public class Direccion {
      */
     public Direccion(String direccion) {
         this.direccion = direccion;
+        this.clientes = new ArrayList<Cliente>();
+        this.Doctributarios = new ArrayList<DocTributario>();
     }
 
     public String getDireccion() {
