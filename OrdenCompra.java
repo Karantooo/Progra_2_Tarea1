@@ -8,19 +8,24 @@ public class OrdenCompra {
     private String estado;
     private ArrayList <DetalleOrden> detalleOrdenes;
     private int size;
+    private Cliente cliente;
 
-    public OrdenCompra(Date fecha, String estado, ArrayList<DetalleOrden> detalleOrdenes) {
+
+    public OrdenCompra(Date fecha, String estado, Cliente cliente) {
         this.fecha = fecha;
         this.estado = estado;
-        this.detalleOrdenes = detalleOrdenes;
-        size = this.detalleOrdenes.size();
+        this.detalleOrdenes = new ArrayList<DetalleOrden>();
+        size = 0;
+        this.cliente = cliente;
+        cliente.asociarOrdenCompra(this);
     }
-
     public OrdenCompra(Date fecha, String estado) {
         this.fecha = fecha;
         this.estado = estado;
         this.detalleOrdenes = new ArrayList<DetalleOrden>();
         size = 0;
+        this.cliente = null;
+
     }
 
 
@@ -86,6 +91,14 @@ public class OrdenCompra {
 
     public void setDetalleOrdenes(ArrayList<DetalleOrden> detalleOrdenes) {
         this.detalleOrdenes = detalleOrdenes;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public float calcPrecioSinIVA(){

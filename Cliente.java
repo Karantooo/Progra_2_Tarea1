@@ -1,13 +1,16 @@
 package org.example;
+
+import java.util.ArrayList;
 /**
  * Clase para generar al cliente junto con sus datos
  *
  * @author Benjamin Alonso Espinoza Henriquez
  */
 public class Cliente {
-    String nombre;
-    String rut;
-    Direccion direccion;
+    private String nombre;
+    private String rut;
+    private Direccion direccion;
+    private ArrayList<OrdenCompra> ordenesCompraAsociadas;
 
     /**
      * Constructor de la clase
@@ -19,6 +22,7 @@ public class Cliente {
         this.nombre = nombre;
         this.rut = rut;
         this.direccion = direccion;
+        ordenesCompraAsociadas = new ArrayList<OrdenCompra>();
     }
 
     public String getNombre() {
@@ -43,6 +47,10 @@ public class Cliente {
 
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
+    }
+
+    public void asociarOrdenCompra(OrdenCompra ordenCompra){
+        ordenesCompraAsociadas.add(ordenCompra);
     }
 
     /**
