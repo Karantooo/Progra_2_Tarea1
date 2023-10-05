@@ -15,8 +15,8 @@ public class Boleta extends DocTributario {
      * @param fecha fecha en la que se realizo el pago
      * @param direccion direccion de la tienda
      */
-    public Boleta(String num, String rut, Date fecha, Direccion direccion) {
-        super(num, rut, fecha, direccion);
+    public Boleta(String num, String rut, Date fecha, Direccion direccion, OrdenCompra ordenCompra) {
+        super(num, rut, fecha, direccion, ordenCompra);
     }
     /**
      * @return String de la boleta con los datos de la compra
