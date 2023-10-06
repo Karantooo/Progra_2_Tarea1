@@ -3,6 +3,12 @@ package org.example;
 import java.util.Date;
 import java.util.ArrayList;
 
+/**
+ * Clase encarga de generar la orden de compra, calcular el precio total, generar documentos tributarios y
+ * ingresar los pagos hechos
+ * @author Carlos Tomás Álvarez Norambuena
+ * @author Benjamin Alonso Espinoza Henriquez
+ */
 public class OrdenCompra {
     private Date fecha;
     private String estado;
@@ -15,6 +21,11 @@ public class OrdenCompra {
     private static int numdoc;
 
 
+    /**
+     * Constructor de la clase con cliente y fecha asociada
+     * @param fecha fecha en la que se realizo la orden
+     * @param cliente cliente para el que se realiza la orden
+     */
     public OrdenCompra(Date fecha, Cliente cliente) {
         this.fecha = fecha;
         this.detalleOrdenes = new ArrayList<DetalleOrden>();
@@ -27,6 +38,12 @@ public class OrdenCompra {
         precioPorPagar = calcPrecio();
         estado = new String("Sin resolver.");
     }
+
+    /**
+     * Constructor de la clase con fecha y estado de la compra asociados
+     * @param fecha fecha en la que se realizo la orden
+     * @param estado estado de la orden
+     */
     public OrdenCompra(Date fecha, String estado) {
         this.fecha = fecha;
         this.estado = estado;
@@ -39,19 +56,34 @@ public class OrdenCompra {
         precioPorPagar = calcPrecio();
     }
 
-
+    /**
+     *Se encarga de agregar detalles de orden.
+     *
+     * @param orden detalle de orden ingresado
+     */
     public void addDetalleOrden(DetalleOrden orden){
         size++;
         precioPorPagar += orden.calcPrecio();
         detalleOrdenes.add(orden);
     }
 
+    /**
+     *Se encarga de agregar detalles de orden en el indice indicado.
+     *
+     * @param orden detalle de orden ingresado
+     * @param index indice en el que se quiere agregar el detalle de orden
+     */
     public void addDetalleOrden(DetalleOrden orden, int index){
         size++;
         precioPorPagar += orden.calcPrecio();
         detalleOrdenes.add(index, orden);
     }
 
+    /**
+     *Se encarga de retirar un detalle de orden.
+     *
+     * @return primer detalle de orden
+     */
     public DetalleOrden removeDetalleOrden(){
         DetalleOrden detalleOrden = null;
         try{
@@ -66,6 +98,12 @@ public class OrdenCompra {
             return detalleOrden;
         }
     }
+
+    /**
+     *Se encarga de retirar un detalle de orden indicado.
+     * @param index indice
+     * @return detalle de orden indicado
+     */
     public DetalleOrden removeDetalleOrden(int index){
         DetalleOrden detalleOrden = null;
         try{
@@ -144,6 +182,10 @@ public class OrdenCompra {
         this.docTributario = docTributario;
     }
 
+    /**
+     *Calcula el precio sin IVA.
+     * @return precio total sin IVA
+     */
     public float calcPrecioSinIVA(){
         float precioSinIVA = 0;
 
@@ -153,6 +195,10 @@ public class OrdenCompra {
         return precioSinIVA;
     }
 
+    /**
+     *Calcula solo el IVA.
+     * @return solo el IVA
+     */
     public float calcIVA(){
         float IVA = 0;
         for (int i = 0; i < size; i++){
@@ -161,6 +207,10 @@ public class OrdenCompra {
         return IVA;
     }
 
+    /**
+     *Calcula el precio total.
+     * @return precio total con IVA incluido
+     */
     public float calcPrecio(){
         float precioConIVA = 0;
         for (int i = 0; i < size; i++){
@@ -169,6 +219,10 @@ public class OrdenCompra {
         return precioConIVA;
     }
 
+    /**
+     *Calcula el peso total.
+     * @return peso total de la orden
+     */
     public float calcPeso(){
         float peso = 0;
         for (int i = 0; i < size; i++){
@@ -179,7 +233,7 @@ public class OrdenCompra {
 
     /**
      *Se detalla lo que se quiere pagar asi como el pago en efectivo que realiza para devolver el vuelto.
-     * En caso de que se quiera pagar más de lo que falta por pgar o el monto pagado es inferior a obtetivo a pagar
+     * En caso de que se quiera pagar más de lo que falta por pagar o el monto pagado es inferior a obtetivo a pagar
      * se devuelve 0 y no se efectua dicho pago.
      * @param montoPagado Monto que paga en dinero el usuario.
      * @param objetivoAPagar Monto que se quiere pagar para calcular el vuelto.
@@ -199,6 +253,16 @@ public class OrdenCompra {
         return efectivo;
     }
 
+    /**
+     *Se encarga de realizar el pago por transferencia.
+     * En caso de que se quiera pagar más de lo que falta por pagar o ya se haya realizado el pago
+     * devuelve 0
+     * @param montoPagado monto que se pago
+     * @param fechaPago fecha en la que se pago
+     * @param banco banco desde el que se realiza el pago
+     * @param numCuenta numero de cuenta desde la que se realiza el pago
+     * @return pago que se realizo
+     */
     public Pago pagarEnTransferencia(float montoPagado, Date fechaPago, String banco, String numCuenta){
         if (montoPagado > precioPorPagar || estado == "Pago realizado.")
             return null;
@@ -212,6 +276,16 @@ public class OrdenCompra {
         return transferencia;
     }
 
+    /**
+     *Se encarga de realizar el pago en tarjeta.
+     * En caso de que se quiera pagar más de lo que falta por pagar o el pago esta realizado
+     * devuelve 0
+     * @param montoPagado monto pagado
+     * @param fechaPago fecha en la que se realizo el pago
+     * @param tipo tipo de tarjeta
+     * @param numTransaccion numero de transaccion
+     * @return pago que se realizo
+     */
     public Pago pagarEnTarjeta(float montoPagado, Date fechaPago, String tipo, String numTransaccion){
         if (montoPagado > precioPorPagar || estado == "Pago realizado.")
             return null;
@@ -224,6 +298,12 @@ public class OrdenCompra {
             estado = "Pago realizado.";
         return tarjeta;
     }
+
+    /**
+     *Genera un documento tributario de tipo boleta.
+     * Revisa si es que ya hay un documento tributario generado, si es que lo hay retorna una excepcion
+     * @return documento tributario de tipo boleta con informacion de la orden de compra
+     */
     public DocTributario generarBoleta(){
         if (docTributario == null) {
             this.docTributario = new Boleta(Integer.toString(numdoc), cliente.getRut(), fecha, cliente.getDireccion(), this);
@@ -234,6 +314,12 @@ public class OrdenCompra {
         return this.docTributario;
 
     }
+
+    /**
+     *Genera un documento tributario de tipo factura.
+     * Revisa si es que ya hay un documento tributario generado, si es que lo hay retorna una excepcion
+     * @return documento tributario de tipo factura con informacion de la orden de compra
+     */
     public DocTributario generarFactura(){
         if(docTributario == null) {
             this.docTributario = new Factura(Integer.toString(numdoc), cliente.getRut(), fecha, cliente.getDireccion(), this);
@@ -244,6 +330,10 @@ public class OrdenCompra {
         return this.docTributario;
     }
 
+    /**
+     *
+     * @return informacion de la orden de compra
+     */
     @Override
     public String toString() {
         String descripcion_OrdenCompra = new String();
