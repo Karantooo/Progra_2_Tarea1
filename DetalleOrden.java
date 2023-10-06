@@ -74,7 +74,7 @@ public class DetalleOrden {
 
     /**
      *
-     * @return Peso de la orden
+     * @return Peso total de los articulos
      */
     public float calcPeso(){
         return getCantidad() * articulo.getPeso();

@@ -2,16 +2,34 @@ package org.example;
 
 import java.util.Date;
 
+/**
+ * Clase que se encarga de realizar el pago mediante tarjeta
+ * Esta clase hereda Pago
+ * @author Carlos Tomás Álvarez Norambuena
+ */
 public class Tarjeta extends Pago{
     private String tipo;
     private String numTransaccion;
 
+    /**
+     *  Constructor para pagos sin fecha especifica
+     * @param monto monto pagado
+     * @param tipo tipo de tarjeta
+     * @param numTransaccion numero de transaccion
+     */
     public Tarjeta(float monto, String tipo, String numTransaccion) {
         super(monto);
         this.tipo = tipo;
         this.numTransaccion = numTransaccion;
     }
 
+    /**
+     *  Constructor para pagos con fecha especifica
+     * @param monto monto pagado
+     * @param fecha fecha en la que se pagara
+     * @param tipo tipo de tarjeta
+     * @param numTransaccion numero de transaccion
+     */
     public Tarjeta(float monto, Date fecha, String tipo, String numTransaccion) {
         super(monto, fecha);
         this.tipo = tipo;
@@ -34,6 +52,10 @@ public class Tarjeta extends Pago{
         this.numTransaccion = numTransaccion;
     }
 
+    /**
+     *
+     * @return informacion del pago con tarjeta
+     */
     @Override
     public String toString(){
         String informacion_cuenta = new String();

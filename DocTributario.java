@@ -18,7 +18,8 @@ import java.util.Date;
      * @param num numero del documento
      * @param rut rut del cliente
      * @param fecha fecha en la que se realizo el pago
-     * @param direccion direccion de la tienda
+     * @param direccion direccion del cliente
+     * @param ordenCompra orden de compra asociado al documento
      */
     public DocTributario(String num, String rut, Date fecha, Direccion direccion,OrdenCompra ordenCompra) {
         this.num = num;
@@ -68,7 +69,7 @@ import java.util.Date;
     }
 
     /**
-     * @return String del documento con los datos de la compra
+     * @return Documento con los datos de la compra
      */
     @Override
     public String toString() {

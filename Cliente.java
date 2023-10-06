@@ -13,7 +13,7 @@ public class Cliente {
     private ArrayList<OrdenCompra> ordenesCompraAsociadas;
 
     /**
-     * Constructor con el cliente con direccion
+     * Constructor con el cliente y su direccion
      * @param nombre nombre del cliente
      * @param rut rut del cliente
      * @param direccion direccion del cliente
@@ -28,7 +28,7 @@ public class Cliente {
     /**
      * Constructor en el caso de que exista un cliente sin direccion
      * @param nombre nombre del cliente
-     * @param rut
+     * @param rut rut del cliente
      */
     public Cliente(String nombre, String rut) {
         this.nombre = nombre;
@@ -69,6 +69,10 @@ public class Cliente {
         this.ordenesCompraAsociadas = ordenesCompraAsociadas;
     }
 
+    /**
+     * metodo para asociar una orden de compra al cliente
+     * @param ordenCompra orden de compra que sera asociada al cliente
+     */
     public void asociarOrdenCompra(OrdenCompra ordenCompra){
         ordenesCompraAsociadas.add(ordenCompra);
     }

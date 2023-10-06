@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * Esta clase esta pensanda para procesar los pagos de transferencia
- * Esta clase hereda directamente de Pago.
+ * Esta clase hereda Pago.
  * Todo pago hecho por transferencia se asume exacto
  * @author Carlos Tomás Álvarez Norambuena
  */
@@ -16,7 +16,7 @@ public class Transferencia extends Pago{
     /**
      *
      * @param monto Monto a transferir.
-     * @param banco Banco desde al que se hizo la transferencia.
+     * @param banco Banco desde el que se reaalizo la transferencia.
      * @param numCuenta Numero de la cuenta.
      */
     public Transferencia(float monto, String banco, String numCuenta) {
@@ -30,7 +30,7 @@ public class Transferencia extends Pago{
      * @param monto Monto a transferir.
      * @param fecha Fecha arbitraria en la que se realiza el pago.
      * @param banco Banco al que se hizo la transferencia.
-     * @param numCuentaNumero de la cuenta.
+     * @param numCuenta Numero de la cuenta.
      */
     public Transferencia(float monto, Date fecha, String banco, String numCuenta) {
         super(monto, fecha);

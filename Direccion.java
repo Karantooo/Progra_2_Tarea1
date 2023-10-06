@@ -3,7 +3,7 @@ package org.example;
 import java.util.ArrayList;
 
 /**
- * Clase para generar la direccion de la tienda o del cliente
+ * Clase para generar la direccion del cliente
  *
  * @author Benjamin Alonso Espinoza Henriquez
  */
@@ -98,7 +98,7 @@ public class Direccion {
 
     /**
      *
-     * @return La direccion sea del cliente o de la tienda
+     * @return direccion del cliente
      */
     @Override
     public String toString() {

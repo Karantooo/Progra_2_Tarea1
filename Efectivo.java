@@ -4,6 +4,7 @@ import java.util.Date;
  * Esta clase esta creada con el objetivo de gestionar los pagos realizados con efectivo.
  * Cabe recalcar que esta clase no maneja el caso en que el monto pagado sea inferior a precio.
  * Esto con el objetivo de que si esto sucede el objeto nunca se genere.
+ * Esta clase hereda Pago
  * @author Carlos Tomás Álvarez Norambuena
  */
 public class Efectivo extends Pago{
