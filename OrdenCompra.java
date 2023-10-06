@@ -15,9 +15,8 @@ public class OrdenCompra {
     private static int numdoc;
 
 
-    public OrdenCompra(Date fecha, String estado, Cliente cliente) {
+    public OrdenCompra(Date fecha, Cliente cliente) {
         this.fecha = fecha;
-        this.estado = estado;
         this.detalleOrdenes = new ArrayList<DetalleOrden>();
         this.docTributario = null;
         numdoc = 0;
@@ -43,11 +42,13 @@ public class OrdenCompra {
 
     public void addDetalleOrden(DetalleOrden orden){
         size++;
+        precioPorPagar += orden.calcPrecio();
         detalleOrdenes.add(orden);
     }
 
     public void addDetalleOrden(DetalleOrden orden, int index){
         size++;
+        precioPorPagar += orden.calcPrecio();
         detalleOrdenes.add(index, orden);
     }
 
@@ -58,6 +59,7 @@ public class OrdenCompra {
                 throw new IllegalArgumentException("Se intenta extraer una orden pero no hay.");
             size--;
             detalleOrden = detalleOrdenes.remove(0);
+            precioPorPagar -= detalleOrden.calcPrecio();
 
         }
         finally{
@@ -71,6 +73,7 @@ public class OrdenCompra {
                 throw new IllegalArgumentException("Se intenta extraer una orden fuera de indice.");
             size--;
             detalleOrden = detalleOrdenes.remove(index);
+            precioPorPagar -= detalleOrden.calcPrecio();
         }
         finally{
             return detalleOrden;
@@ -183,9 +186,9 @@ public class OrdenCompra {
      * @param fechaPago Fecha en que se va a efectuar el pago.
      * @return Vuelto a devolver.
      */
-    public float pagarEnEfectivo(float montoPagado,float objetivoAPagar ,Date fechaPago){
-        if (montoPagado < objetivoAPagar || objetivoAPagar > precioPorPagar)
-            return 0.0f;
+    public Pago pagarEnEfectivo(float montoPagado,float objetivoAPagar ,Date fechaPago){
+        if (montoPagado < objetivoAPagar || objetivoAPagar > precioPorPagar || estado == "Pago realizado.")
+            return null;
         estado = "En proceso.";
         Efectivo efectivo = new Efectivo(objetivoAPagar, montoPagado, fechaPago);
         pagoCompra.add(efectivo);
@@ -193,12 +196,12 @@ public class OrdenCompra {
         if (precioPorPagar == 0)
             estado = "Pago realizado.";
 
-        return efectivo.calcDevolucion();
+        return efectivo;
     }
 
-    public void pagarEnTransferencia(float montoPagado, Date fechaPago, String banco, String numCuenta){
-        if (montoPagado > precioPorPagar)
-            return ;
+    public Pago pagarEnTransferencia(float montoPagado, Date fechaPago, String banco, String numCuenta){
+        if (montoPagado > precioPorPagar || estado == "Pago realizado.")
+            return null;
         estado = "En proceso.";
         Transferencia transferencia = new Transferencia(montoPagado, fechaPago, banco, numCuenta);
 
@@ -206,11 +209,12 @@ public class OrdenCompra {
         precioPorPagar -= montoPagado;
         if (precioPorPagar == 0)
             estado = "Pago realizado.";
+        return transferencia;
     }
 
-    public void pagarEnTarjeta(float montoPagado, Date fechaPago, String tipo, String numTransaccion){
-        if (montoPagado > precioPorPagar)
-            return ;
+    public Pago pagarEnTarjeta(float montoPagado, Date fechaPago, String tipo, String numTransaccion){
+        if (montoPagado > precioPorPagar || estado == "Pago realizado.")
+            return null;
         estado = "En proceso.";
         Tarjeta tarjeta = new Tarjeta(montoPagado, fechaPago, tipo, numTransaccion);
 
@@ -218,6 +222,7 @@ public class OrdenCompra {
         precioPorPagar -= montoPagado;
         if (precioPorPagar == 0)
             estado = "Pago realizado.";
+        return tarjeta;
     }
     public DocTributario generarBoleta(){
         if (docTributario == null) {
