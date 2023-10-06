@@ -13,7 +13,7 @@ public class Cliente {
     private ArrayList<OrdenCompra> ordenesCompraAsociadas;
 
     /**
-     * Constructor de la clase
+     * Constructor con el cliente con direccion
      * @param nombre nombre del cliente
      * @param rut rut del cliente
      * @param direccion direccion del cliente
@@ -22,6 +22,18 @@ public class Cliente {
         this.nombre = nombre;
         this.rut = rut;
         this.direccion = direccion;
+        ordenesCompraAsociadas = new ArrayList<OrdenCompra>();
+    }
+
+    /**
+     * Constructor en el caso de que exista un cliente sin direccion
+     * @param nombre nombre del cliente
+     * @param rut
+     */
+    public Cliente(String nombre, String rut) {
+        this.nombre = nombre;
+        this.rut = rut;
+        this.direccion = null;
         ordenesCompraAsociadas = new ArrayList<OrdenCompra>();
     }
 
