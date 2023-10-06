@@ -18,10 +18,10 @@ public class Articulo {
     /**
      * Constructor de la clase
      *
-     * @param peso peso del articulo
+     * @param peso peso del articulo en gramos
      * @param nombre nombre del articulo
      * @param descripcion descripcion del articulo
-     * @param precio precio del articulo
+     * @param precio precio del articulo en pesos chilenos
      */
     public Articulo(float peso, String nombre, String descripcion, float precio) {
         this.peso = peso;
